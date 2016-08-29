@@ -1,4 +1,4 @@
-package com.cservice;
+package com.cservice.controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.*;
 @ComponentScan
 @EnableAutoConfiguration
 @RequestMapping(value = "api", produces = MediaType.APPLICATION_JSON_VALUE)
-public class CarsserviceApplication {
+public class CS_Controller {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CarsserviceApplication.class, args);
+		SpringApplication.run(CS_Controller.class, args);
 	}
 
 
