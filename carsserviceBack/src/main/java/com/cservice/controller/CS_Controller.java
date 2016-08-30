@@ -23,8 +23,8 @@ public class CS_Controller {
 
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping(value = "/ping",method = RequestMethod.GET)
-	public void ping(){
-
+	public String ping(){
+		return "pong";
 	}
 
 
