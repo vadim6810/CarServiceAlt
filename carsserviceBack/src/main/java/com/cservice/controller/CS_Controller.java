@@ -22,7 +22,7 @@ public class CS_Controller {
 
 
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping(value = "/ping",method = RequestMethod.GET)
+	@RequestMapping(value = "/ping",method = RequestMethod.GET)//us test
 	public String ping(){
 		return "pong";
 	}
