@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.*;
 @ComponentScan
 @EnableAutoConfiguration
 @RequestMapping(value = "api", produces = MediaType.APPLICATION_JSON_VALUE)
-public class CS_Controller {
+public class CS_Controller_Main {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CS_Controller.class, args);
+		SpringApplication.run(CS_Controller_Main.class, args);
 	}
 
 

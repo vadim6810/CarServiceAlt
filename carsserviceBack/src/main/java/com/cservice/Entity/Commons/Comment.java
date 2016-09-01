@@ -1,11 +1,9 @@
-package Commons;
+package com.cservice.Entity.Commons;
 
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by user on 01/09/2016.
- */
+
 public class Comment {
 
     private int id;
@@ -24,7 +22,7 @@ public class Comment {
         this.dateComment = dateComment;
     }
 
-    public boolean addComment(int idClient, int id){
+    public boolean addComment(int idClient, int id, String comment){
 
         return false;
     }
