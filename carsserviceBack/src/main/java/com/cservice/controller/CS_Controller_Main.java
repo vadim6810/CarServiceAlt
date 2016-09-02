@@ -1,6 +1,7 @@
 package com.cservice.controller;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.apache.tomcat.jni.Time;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -33,16 +34,15 @@ public class CS_Controller_Main {
 
 
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping(value = "login",method = RequestMethod.POST)//us test
+	@RequestMapping(value = "users/login",method = RequestMethod.POST)//us test
 	public void login(HttpServletRequest request, HttpServletResponse response){
-
-
-		response.addCookie(new Cookie("id","121212"));
-
+		Cookie userID=new Cookie("id","121212");
+		userID.setMaxAge(60*60*24);
+		response.addCookie(userID);
 	}
 
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping(value = "logout",method = RequestMethod.POST)//us test
+	@RequestMapping(value = "users/logout",method = RequestMethod.POST)//us test
 	public void logout(HttpServletRequest request, HttpServletResponse response){
 
 
