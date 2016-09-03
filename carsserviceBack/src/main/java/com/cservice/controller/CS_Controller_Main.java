@@ -1,10 +1,13 @@
 package com.cservice.controller;
 
+import com.cservice.Entity.Commons.Account;
+import com.cservice.Security.JwtUtil;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
-import org.apache.tomcat.jni.Time;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,6 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(value = "api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CS_Controller_Main {
 
+	private final JwtUtil jwt=new JwtUtil();
+
 	public static void main(String[] args) {
 		SpringApplication.run(CS_Controller_Main.class, args);
 	}
@@ -35,18 +40,18 @@ public class CS_Controller_Main {
 
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping(value = "users/login",method = RequestMethod.POST)//us test
-	public void login(HttpServletRequest request, HttpServletResponse response){
-		Cookie userID=new Cookie("id","121212");
-		userID.setMaxAge(60*60*24);
-		response.addCookie(userID);
-	}
+	public void login(@RequestParam String login,@RequestParam String password, HttpServletRequest request, HttpServletResponse response){
 
-	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping(value = "users/logout",method = RequestMethod.POST)//us test
-	public void logout(HttpServletRequest request, HttpServletResponse response){
+        Account acc;
 
-
-
+        System.out.println(login);
+        System.out.println(password);
+		//
+		Cookie cookie=new Cookie("X-API",jwt.generateToken());
+        //".inetex.co.il"
+//        cookie.setDomain("localhost");
+//        cookie.setMaxAge(60*60*24);
+		response.addCookie(cookie);
 	}
 
 }

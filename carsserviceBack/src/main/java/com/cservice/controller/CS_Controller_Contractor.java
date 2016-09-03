@@ -1,7 +1,9 @@
 package com.cservice.controller;
 
-/**
- * Created by user on 01/09/2016.
- */
+
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
 public class CS_Controller_Contractor {
 }
