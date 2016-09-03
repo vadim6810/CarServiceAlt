@@ -1,38 +1,42 @@
 package Security;
 
-import io.jsonwebtoken.Claims;
+import com.cservice.Entity.Commons.Account;
+import com.cservice.Entity.Commons.Role;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 
 
-/**
- * Created by user on 02/09/2016.
- */
 public class JwtUtil {
     @Value("${jwt.secret}")
     private String secret;
 
+    @Autowired
+    Account acc;
+
     /**
-     * Tries to parse specified String as a JWT token. If successful, returns User object with username, id and role prefilled (extracted from token).
+     * Tries to parse specified String as a JWT token. If successful, returns Account object with username, id and role prefilled (extracted from token).
      * If unsuccessful (token is invalid or not containing all required user properties), simply returns null.
      *
      * @param token the JWT token to parse
-     * @return the User object extracted from specified token or null if a token is invalid.
+     * @return the Account object extracted from specified token or null if a token is invalid.
      */
-    public User parseToken(String token) {
+    public Account parseToken(String token) {
         try {
             Claims body = Jwts.parser()
                     .setSigningKey(secret)
                     .parseClaimsJws(token)
                     .getBody();
 
-            User u = new User();
-            u.setUsername(body.getSubject());
-            u.setId(Long.parseLong((String) body.get("userId")));
-            u.setRole((String) body.get("role"));
 
-            return u;
+            acc.setName(body.getSubject());
+            acc.setId(Long.parseLong((String) body.get("userId")));
+            acc.setRole((Role) body.get("role"));
+
+            return acc;
 
         } catch (JwtException | ClassCastException e) {
             return null;
@@ -41,15 +45,16 @@ public class JwtUtil {
 
     /**
      * Generates a JWT token containing username as subject, and userId and role as additional claims. These properties are taken from the specified
-     * User object. Tokens validity is infinite.
+     * Account object. Tokens validity is infinite.
      *
-     * @param u the user for which the token will be generated
+     * @param acc the user for which the token will be generated
      * @return the JWT token
      */
-    public String generateToken(User u) {
-        Claims claims = Jwts.claims().setSubject(u.getUsername());
-        claims.put("userId", u.getId() + "");
-        claims.put("role", u.getRole());
+    public String generateToken(Account acc) {
+        Claims claims = Jwts.claims().setSubject(acc.getName());
+        claims.put("userId", acc.getId() + "");
+        claims.put("role", acc.getRole());
+        claims.put("token_exp_date","");
 
         return Jwts.builder()
                 .setClaims(claims)
