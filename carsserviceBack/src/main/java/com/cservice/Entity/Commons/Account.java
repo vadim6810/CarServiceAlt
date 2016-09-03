@@ -1,13 +1,40 @@
 package com.cservice.Entity.Commons;
 
+import javax.persistence.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 
+/**
+ * Entity inheritance details http://docs.oracle.com/javaee/6/tutorial/doc/bnbqn.html
+ * @Inheritance(strategy = InheritanceType.JOINED) ==> 3 table (Account, Client, Contractor)
+ * advantage (as minimum): unique name constraint for union Client+Contractor
+ * Annotation @MappedSuperclass or @Entity required, otherwise the Account fields will nonpersistents.
+ */
+
+@MappedSuperclass
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"name"}),
+        }
+)
 public abstract class Account {
+    @Column(nullable = false)
     private Role role;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String email;
+
+    @Column(nullable = false)
     private String password;
-    private String phone;
+
+    @ElementCollection
+    private Collection<String> phone = new HashSet<>(); //different from uml, Collection<String> instead of String
+
+    @Embedded
     private Address address;
     private String avatar;
 
@@ -51,12 +78,23 @@ public abstract class Account {
         this.password = password;
     }
 
-    public String getPhone() {
+    //different from uml, Collection<String> instead of String
+    public Collection<String> getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    //uml extension (String... argument in place of String), instead of setter
+    public void addPhone(String... phone) {
+        if (phone.length > 0)
+            this.phone.addAll(Arrays.asList(phone));
+    }
+
+    //uml extension (String... argument in place of String), instead of setter
+    public boolean removePhone(String... phone) {
+        if (phone.length > 0)
+            return this.phone.removeAll(Arrays.asList(phone));
+        else
+            return false;
     }
 
     public Address getAddress() {

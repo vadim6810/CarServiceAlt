@@ -1,10 +1,10 @@
-package com;
+package com.cservice.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by Admin on 02.09.2016.
+ * Created by Oleg on 02.09.2016.
  */
 @Entity
 public class TypeService {

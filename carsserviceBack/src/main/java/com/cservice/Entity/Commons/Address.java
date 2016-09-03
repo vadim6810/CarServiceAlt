@@ -1,7 +1,9 @@
 package com.cservice.Entity.Commons;
 
+import javax.persistence.Embeddable;
 import java.util.Collection;
 
+@Embeddable
 public class Address {
     private int id;
     private Collection<String> city;
