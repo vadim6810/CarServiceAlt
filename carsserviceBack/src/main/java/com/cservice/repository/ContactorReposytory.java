@@ -12,7 +12,8 @@ import java.util.Map;
  * Created by Oleg on 02.09.2016.
  */
 public interface ContactorReposytory {
-    Contractor getConractor(String email);
+    Contractor getConractorByEmail(String email);
+    Contractor getConractorByName(String name);
     List<Contractor> getConractorByTypeVehicle(String typeVehicle);
     List<Contractor> getConractorByRangeWorks(String rangeWorks);
     List<Contractor> getConractorByCarManufacture(String typeVehicle, String carManufacture);
@@ -22,7 +23,8 @@ public interface ContactorReposytory {
                              Collection<String> typeService, String fax, Map<Integer, WorkingHours> workingDays, Collection<String> typeVechile,
                              Collection<String> rangeWorks, String url);
     boolean removeContactor(Contractor contractor);
-    boolean removeContactor(String email);
+    boolean removeContactorByEmail(String email);
+    boolean removeContactorByName(String name);
     Collection<String> getTypeServise();
     void addTypeServise(String... typeServise);
     boolean removeTypeServise(String... typeServise);
