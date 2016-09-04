@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by Oleg on 02.09.2016.
  */
-public interface ContactorReposytory {
+public interface ContractorRepository {
     Contractor getConractorByEmail(String email);
     Contractor getConractorByName(String name);
     List<Contractor> getConractorByTypeVehicle(String typeVehicle);
