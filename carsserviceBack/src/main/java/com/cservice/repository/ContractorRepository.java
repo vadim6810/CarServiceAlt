@@ -12,30 +12,30 @@ import java.util.Map;
  * Created by Oleg on 02.09.2016.
  */
 public interface ContractorRepository {
-    Contractor getConractorByEmail(String email);
-    Contractor getConractorByName(String name);
-    List<Contractor> getConractorByTypeVehicle(String typeVehicle);
-    List<Contractor> getConractorByRangeWorks(String rangeWorks);
-    List<Contractor> getConractorByCarManufacture(String typeVehicle, String carManufacture);
-    List<Contractor> getConractorByArea(String area);
-    List<Contractor> getConractorByCity(String city);
-    Contractor addContatctor(String name, String email, String password, Collection<String>phone, Address address, String avatar,
-                             Collection<String> typeService, String fax, Map<Integer, WorkingHours> workingDays, Collection<String> typeVechile,
+    Contractor getContractorByEmail(String email);
+    Contractor getContractorByName(String name);
+    List<Contractor> getContractorByTypeVehicle(String typeVehicle);
+    List<Contractor> getContractorByRangeWorks(String rangeWorks);
+    List<Contractor> getContractorByCarManufacture(String typeVehicle, String carManufacture);
+    List<Contractor> getContractorByArea(String area);
+    List<Contractor> getContractorByCity(String city);
+    Contractor addContractor(String name, String email, String password, Collection<String>phone, Address address, String avatar,
+                             Collection<String> typeService, String fax, Map<Integer, WorkingHours> workingDays, Collection<String> typeVehicle,
                              Collection<String> rangeWorks, String url);
-    boolean removeContactor(Contractor contractor);
-    boolean removeContactorByEmail(String email);
-    boolean removeContactorByName(String name);
-    Collection<String> getTypeServise();
-    void addTypeServise(String... typeServise);
-    boolean removeTypeServise(String... typeServise);
+    boolean removeContractor(Contractor contractor);
+    boolean removeContractorByEmail(String email);
+    boolean removeContractorByName(String name);
+    Collection<String> getTypeService();
+    void addTypeService(String... typeService);
+    boolean removeTypeService(String... typeService);
     String getFax();
     void setFax(String fax);
     Map<Integer, WorkingHours> getWorkingDays();
     void addWorkingDays(int dayOfWeek, WorkingHours workingDays);
     boolean removeWorkingDays(int dayOfWeek);
-    Collection<String> getTypeVechile();
-    void addTypeVechile(String... typeVechile);
-    boolean removeTypeVechile(String... typeVechile);
+    Collection<String> getTypeVehicle();
+    void addTypeVehicle(String... typeVehicle);
+    boolean removeTypeVehicle(String... typeVehicle);
     Collection<String> getRangeWorks();
     void addRangeWorks(String... rangeWorks);
     boolean removeRangeWorks(String... rangeWorks);
