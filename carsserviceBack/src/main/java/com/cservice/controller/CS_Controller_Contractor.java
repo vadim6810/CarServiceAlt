@@ -14,22 +14,23 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "contractor", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CS_Controller_Contractor {
 
-    ContractorRepository cr;
+    @Autowired
+    private ContractorRepository cr;
+
     //returns list of available contractors
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/{email}",method = RequestMethod.GET)
-    public Contractor getAll(@PathVariable String email){
+    @RequestMapping(value = "/{email}", method = RequestMethod.GET)
+    public Contractor getAll(@PathVariable String email) {
         return cr.getConractorByEmail(email);
     }
 
     //returns list of available contractors
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/",method = RequestMethod.POST)
-    public String add(){
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public String add() {
 
         return "pong";
     }
-
 
 
 }
