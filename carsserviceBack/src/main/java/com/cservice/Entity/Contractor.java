@@ -37,6 +37,12 @@ public class Contractor extends Account {
         setRole(CONTRACTOR);
     }
 
+    /* typeService */
+    public void setTypeServise(Collection<String> typeServise) {
+        this.typeServise.clear();
+        this.typeServise.addAll(typeServise);
+    }
+
     public Collection<String> getTypeServise() {
         return typeServise;
     }
@@ -47,18 +53,22 @@ public class Contractor extends Account {
     }
 
     public boolean removeTypeServise(String... typeServise) {
-        if (typeServise.length > 0)
-            return this.typeServise.removeAll(Arrays.asList(typeServise));
-        else
-            return false;
+        return typeServise.length > 0 && this.typeServise.removeAll(Arrays.asList(typeServise));
     }
 
+    /* fax */
     public String getFax() {
         return fax;
     }
 
     public void setFax(String fax) {
         this.fax = fax;
+    }
+
+    /* workingDays */
+    public void setWorkingDays(Map<Integer, WorkingHours> workingDays) {
+        this.workingDays.clear();
+        this.workingDays.putAll(workingDays);
     }
 
     public Map<Integer, WorkingHours> getWorkingDays() {
@@ -73,6 +83,12 @@ public class Contractor extends Account {
         return this.workingDays.remove(dayOfWeek) != null;
     }
 
+    /* typeVechile */
+    public void setTypeVechile(Collection<String> typeVechile) {
+        this.typeVechile.clear();
+        this.typeVechile.addAll(typeVechile);
+    }
+
     public Collection<String> getTypeVechile() {
         return typeVechile;
     }
@@ -83,10 +99,13 @@ public class Contractor extends Account {
     }
 
     public boolean removeTypeVechile(String... typeVechile) {
-        if (typeVechile.length > 0)
-            return this.typeVechile.removeAll(Arrays.asList(typeVechile));
-        else
-            return false;
+        return typeVechile.length > 0 && this.typeVechile.removeAll(Arrays.asList(typeVechile));
+    }
+
+    /* rangeWorks */
+    public void setRangeWorks(Collection<String> rangeWorks) {
+        this.rangeWorks.clear();
+        this.rangeWorks.addAll(rangeWorks);
     }
 
     public Collection<String> getRangeWorks() {
@@ -99,12 +118,10 @@ public class Contractor extends Account {
     }
 
     public boolean removeRangeWorks(String... rangeWorks) {
-        if (rangeWorks.length > 0)
-            return this.rangeWorks.removeAll(Arrays.asList(rangeWorks));
-        else
-            return false;
+        return rangeWorks.length > 0 && this.rangeWorks.removeAll(Arrays.asList(rangeWorks));
     }
 
+    /* url */
     public String getUrl() {
         return url;
     }
