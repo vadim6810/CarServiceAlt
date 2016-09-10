@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -22,7 +23,7 @@ import java.util.HashSet;
         @UniqueConstraint(columnNames = {"name"}),
 }
 )
-public abstract class Account {
+public abstract class Account implements Serializable {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     @JsonProperty("role")

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@EnableAutoConfiguration
 @ComponentScan
 @RequestMapping(value = "contractor", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CS_Controller_Contractor {

@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 @SpringBootApplication
 @CrossOrigin
 @RestController
+@EnableAutoConfiguration
 @ComponentScan
 @RequestMapping(value = "api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CS_Controller_Main {
