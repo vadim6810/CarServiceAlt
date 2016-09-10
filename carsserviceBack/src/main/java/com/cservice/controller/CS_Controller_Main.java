@@ -1,6 +1,7 @@
 package com.cservice.controller;
 
 import com.cservice.Entity.Commons.Account;
+import com.cservice.repository.ContractorRepository;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -23,7 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(value = "api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CS_Controller_Main {
 
-
+	@Autowired
+	private ContractorRepository cr;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CS_Controller_Main.class, args);

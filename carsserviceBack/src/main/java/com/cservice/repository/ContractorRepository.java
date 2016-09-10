@@ -3,10 +3,8 @@ package com.cservice.repository;
 import com.cservice.Entity.Commons.Address;
 import com.cservice.Entity.Commons.WorkingHours;
 import com.cservice.Entity.Contractor;
-import org.springframework.data.repository.CrudRepository;
-
-import javax.transaction.Transactional;
-
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.repository.Repository;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +12,7 @@ import java.util.Map;
 /**
  * Created by Oleg on 02.09.2016.
  */
-@Transactional
-public interface ContractorRepository extends CrudRepository<Contractor, Long> {
+public interface ContractorRepository extends Repository<Contractor, Long> {
     Contractor getContractorByEmail(String email);
 
     Contractor getContractorByName(String name);
