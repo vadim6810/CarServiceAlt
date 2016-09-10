@@ -4,6 +4,7 @@ package com.cservice.controller;
 import com.cservice.Entity.Commons.Address;
 import com.cservice.Entity.Contractor;
 import com.cservice.repository.ContractorRepository;
+import com.cservice.service.ContractorService;
 import com.cservice.service.impl.ContractorServiceImplementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import java.util.List;
 @RequestMapping(value = "contractor", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CS_Controller_Contractor {
 
-    private ContractorServiceImplementation crepo;
+    private ContractorService crepo;
 
     //returns list of available contractors
     @ResponseStatus(HttpStatus.OK)
@@ -36,20 +37,22 @@ public class CS_Controller_Contractor {
 
     //returns list of available contractors
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "{email}", method = RequestMethod.GET)
-    public Contractor getByEmail(@PathVariable("email") String email) {
+    @RequestMapping( method = RequestMethod.GET)
+    public Contractor getByEmail(@RequestParam("email") String email) {
+        System.out.println(email);
+
         return crepo.getContractorByEmail(email);
     }
 
-    //returns list of available contractors
-    @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "{type}/{value}", method = RequestMethod.GET)
-    public String add(@PathVariable String type, @PathVariable String value) {
-
-        System.out.println("type=" + type + " value=" + value);
-
-        return "pong";
-    }
+//    //returns list of available contractors
+//    @ResponseStatus(HttpStatus.OK)
+//    @RequestMapping(value = "{type}/{value}", method = RequestMethod.GET)
+//    public String add(@PathVariable String type, @PathVariable String value) {
+//
+//        System.out.println("type=" + type + " value=" + value);
+//
+//        return "pong";
+//    }
 
 
 

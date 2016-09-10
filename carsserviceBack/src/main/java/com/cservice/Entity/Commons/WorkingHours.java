@@ -1,5 +1,7 @@
 package com.cservice.Entity.Commons;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
@@ -13,11 +15,14 @@ import java.util.Date;
 public class WorkingHours {
     @Temporal(TemporalType.TIME)
     @Column(nullable = false)
+    @JsonProperty("from")
     private Date from;
 
     @Temporal(TemporalType.TIME)
     @Column(nullable = false)
+    @JsonProperty("to")
     private Date to;
+    @JsonProperty("note")
     private String note;
 
     public WorkingHours() {
@@ -51,5 +56,14 @@ public class WorkingHours {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @Override
+    public String toString() {
+        return "WorkingHours{" +
+                "from=" + from +
+                ", to=" + to +
+                ", note='" + note + '\'' +
+                '}';
     }
 }

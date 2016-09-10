@@ -11,6 +11,7 @@ import java.util.Map;
  * Created by user on 10/09/2016.
  */
 public interface ContractorService {
+
     Contractor getContractorByEmail(String email);
 
     Contractor getContractorByName(String name);

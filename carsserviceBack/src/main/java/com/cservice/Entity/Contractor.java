@@ -147,7 +147,6 @@ public class Contractor extends Account {
         this.url = url;
     }
 
-
     @Override
     public String toString() {
         return "Contractor{" +
