@@ -14,11 +14,12 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Transactional
 @RestController
 @EnableAutoConfiguration
 @ComponentScan
@@ -26,7 +27,7 @@ import java.util.List;
 public class CS_Controller_Contractor {
     private static final Logger log = LoggerFactory.getLogger(CS_Controller_Contractor.class);
 
-    private ContractorService crepo;
+    private ContractorServiceImplementation crepo;
 
     //returns list of available contractors
     @ResponseStatus(HttpStatus.OK)
@@ -34,9 +35,9 @@ public class CS_Controller_Contractor {
     public void addContractor(@RequestBody Contractor contractor) {
 
         log.info(contractor.toString());
-       Contractor c=crepo.addContractor(contractor);
+       crepo.addContractor(contractor);
 
-        System.out.println(c);
+        System.out.println(contractor);
 
     }
 
