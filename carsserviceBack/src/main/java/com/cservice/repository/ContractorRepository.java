@@ -9,7 +9,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 
 import java.util.List;
 
-public interface ContractorRepository extends JpaRepository<Contractor, Long> {
+public interface ContractorRepository extends CrudRepository<Contractor, Long> {
 
 
     List<Contractor> findByCity( String city);

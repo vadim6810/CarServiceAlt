@@ -71,4 +71,15 @@ public class Address {
     public void setTxt_house(String txt_house) {
         this.txt_house = txt_house;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "city=" + city +
+                ", area=" + area +
+                ", street='" + street + '\'' +
+                ", house='" + house + '\'' +
+                ", txt_house='" + txt_house + '\'' +
+                '}';
+    }
 }

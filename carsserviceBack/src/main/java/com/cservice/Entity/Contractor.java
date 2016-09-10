@@ -5,6 +5,7 @@ import com.cservice.Entity.Commons.Address;
 import com.cservice.Entity.Commons.Role;
 import com.cservice.Entity.Commons.WorkingHours;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Column;
@@ -41,7 +42,8 @@ public class Contractor extends Account {
     @JsonProperty("url")
     private String url;
 
-    public Contractor() {
+    Contractor() {
+        super(Role.CONTRACTOR);
     }
 
     public Contractor(String name, String email, String password, Collection<String> phone, Address address, String avatar, Collection<String> typeService, String fax, Map<Integer, WorkingHours> workingDays, Collection<String> typeVehicle, Collection<String> rangeWorks, String url) {
@@ -156,6 +158,6 @@ public class Contractor extends Account {
                 ", typeVehicle=" + typeVehicle +
                 ", rangeWorks=" + rangeWorks +
                 ", url='" + url + '\'' +
-                '}';
+                "} " + super.toString();
     }
 }

@@ -1,6 +1,7 @@
 package com.cservice.Entity.Commons;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -26,7 +27,7 @@ import java.util.HashSet;
 public abstract class Account implements Serializable {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    @JsonProperty("role")
+    @JsonIgnore
     private Role role;
 
     @Id
@@ -52,12 +53,13 @@ public abstract class Account implements Serializable {
     @JsonProperty("avatar")
     private String avatar;
 
-    public Account() {
+    public Account(Role role) {
+        this.role=role;
     }
 
     public Account(Role role, String name, String email, String password, Collection<String> phone, Address address, String avatar) {
         this.role = role;
-        this.id = id;
+
         this.name = name;
         this.email = email;
         this.password = password;
@@ -139,5 +141,19 @@ public abstract class Account implements Serializable {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "role=" + role +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phone=" + phone +
+                ", address=" + address +
+                ", avatar='" + avatar + '\'' +
+                '}';
     }
 }

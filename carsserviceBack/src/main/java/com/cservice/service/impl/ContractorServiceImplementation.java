@@ -57,7 +57,7 @@ public class ContractorServiceImplementation implements ContractorService {
 
     @Override
     public Contractor addContractor(Contractor contractor) {
-        return cr.saveAndFlush(contractor);
+        return cr.save(contractor);
     }
 
     @Override

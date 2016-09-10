@@ -7,6 +7,8 @@ import com.cservice.repository.ContractorRepository;
 import com.cservice.service.ContractorService;
 import com.cservice.service.impl.ContractorServiceImplementation;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,6 +24,7 @@ import java.util.List;
 @ComponentScan
 @RequestMapping(value = "contractor", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CS_Controller_Contractor {
+    private static final Logger log = LoggerFactory.getLogger(CS_Controller_Contractor.class);
 
     private ContractorService crepo;
 
@@ -29,9 +32,12 @@ public class CS_Controller_Contractor {
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(method = RequestMethod.POST)
     public void addContractor(@RequestBody Contractor contractor) {
-        System.out.println(contractor);
 
-        crepo.addContractor(contractor);
+        log.info(contractor.toString());
+       Contractor c=crepo.addContractor(contractor);
+
+        System.out.println(c);
+
     }
 
 
