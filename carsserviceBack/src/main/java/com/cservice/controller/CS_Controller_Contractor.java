@@ -1,15 +1,20 @@
 package com.cservice.controller;
 
 
+import com.cservice.Entity.Commons.Address;
 import com.cservice.Entity.Contractor;
 import com.cservice.repository.ContractorRepository;
 import com.cservice.service.impl.ContractorServiceImplementation;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @ComponentScan
@@ -22,9 +27,8 @@ public class CS_Controller_Contractor {
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(method = RequestMethod.POST)
     public void addContractor(@RequestBody Contractor contractor) {
+        System.out.println(contractor);
 
-
-     //   contractor=new Contractor(null,"1234566",null,null,null,"");
         crepo.addContractor(contractor);
     }
 

@@ -4,14 +4,14 @@ import com.cservice.Entity.Commons.Account;
 import com.cservice.Entity.Commons.Address;
 import com.cservice.Entity.Commons.Role;
 import com.cservice.Entity.Commons.WorkingHours;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import java.util.*;
-
-import static com.cservice.Entity.Commons.Role.CONTRACTOR;
 
 
 /**
@@ -21,49 +21,56 @@ import static com.cservice.Entity.Commons.Role.CONTRACTOR;
 public class Contractor extends Account {
 
     @ManyToMany
-    private Collection<String> typeServise = new HashSet<>();
+    @JsonProperty("typeService")
+    private Collection<String> typeService = new HashSet<>();
+    @JsonProperty("fax")
     private String fax;
 
     @ElementCollection
+    @JsonProperty("workingDays")
     @Column(name = "dayOfWeek", nullable = false)
     private Map<Integer, WorkingHours> workingDays = new HashMap<>();
 
     @ManyToMany
-    private Collection<String> typeVechile = new HashSet<>();
+    @JsonProperty("typeVehicle")
+    private Collection<String> typeVehicle = new HashSet<>();
 
     @ManyToMany
+    @JsonProperty("rangeWorks")
     private Collection<String> rangeWorks = new HashSet<>();
+    @JsonProperty("url")
     private String url;
 
+    public Contractor() {
+    }
 
-
-    public Contractor( String name, String email, String password, Collection<String> phone, Address address, String avatar, Collection<String> typeServise, String fax, Map<Integer, WorkingHours> workingDays, Collection<String> typeVehicle, Collection<String> rangeWorks, String url) {
+    public Contractor(String name, String email, String password, Collection<String> phone, Address address, String avatar, Collection<String> typeService, String fax, Map<Integer, WorkingHours> workingDays, Collection<String> typeVehicle, Collection<String> rangeWorks, String url) {
         super(Role.CONTRACTOR, name, email, password, phone, address, avatar);
-        this.typeServise = typeServise;
+        this.typeService = typeService;
         this.fax = fax;
         this.workingDays = workingDays;
-        this.typeVechile = typeVehicle;
+        this.typeVehicle = typeVehicle;
         this.rangeWorks = rangeWorks;
         this.url = url;
     }
 
     /* typeService */
-    public void setTypeServise(Collection<String> typeServise) {
-        this.typeServise.clear();
-        this.typeServise.addAll(typeServise);
+    public void setTypeService(Collection<String> typeService) {
+        this.typeService.clear();
+        this.typeService.addAll(typeService);
     }
 
-    public Collection<String> getTypeServise() {
-        return typeServise;
+    public Collection<String> getTypeService() {
+        return typeService;
     }
 
     public void addTypeServise(String... typeServise) {
         if (typeServise.length > 0)
-            this.typeServise.addAll(Arrays.asList(typeServise));
+            this.typeService.addAll(Arrays.asList(typeServise));
     }
 
     public boolean removeTypeServise(String... typeServise) {
-        return typeServise.length > 0 && this.typeServise.removeAll(Arrays.asList(typeServise));
+        return typeServise.length > 0 && this.typeService.removeAll(Arrays.asList(typeServise));
     }
 
     /* fax */
@@ -93,23 +100,23 @@ public class Contractor extends Account {
         return this.workingDays.remove(dayOfWeek) != null;
     }
 
-    /* typeVechile */
-    public void setTypeVechile(Collection<String> typeVechile) {
-        this.typeVechile.clear();
-        this.typeVechile.addAll(typeVechile);
+    /* typeVehicle */
+    public void setTypeVehicle(Collection<String> typeVehicle) {
+        this.typeVehicle.clear();
+        this.typeVehicle.addAll(typeVehicle);
     }
 
-    public Collection<String> getTypeVechile() {
-        return typeVechile;
+    public Collection<String> getTypeVehicle() {
+        return typeVehicle;
     }
 
     public void addTypeVechile(String... typeVechile) {
         if (typeVechile.length > 0)
-            this.typeVechile.addAll(Arrays.asList(typeVechile));
+            this.typeVehicle.addAll(Arrays.asList(typeVechile));
     }
 
     public boolean removeTypeVechile(String... typeVechile) {
-        return typeVechile.length > 0 && this.typeVechile.removeAll(Arrays.asList(typeVechile));
+        return typeVechile.length > 0 && this.typeVehicle.removeAll(Arrays.asList(typeVechile));
     }
 
     /* rangeWorks */
@@ -138,5 +145,18 @@ public class Contractor extends Account {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Contractor{" +
+                "typeService=" + typeService +
+                ", fax='" + fax + '\'' +
+                ", workingDays=" + workingDays +
+                ", typeVehicle=" + typeVehicle +
+                ", rangeWorks=" + rangeWorks +
+                ", url='" + url + '\'' +
+                '}';
     }
 }

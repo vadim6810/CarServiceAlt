@@ -1,5 +1,8 @@
 package com.cservice.Entity.Commons;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,23 +25,34 @@ import java.util.HashSet;
 public abstract class Account {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    @JsonProperty("role")
     private Role role;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("email")
     private String email;
 
     @Column(nullable = false)
+    @JsonProperty("password")
     private String password;
 
     @ElementCollection
+    @JsonProperty("phone")
     private Collection<String> phone = new HashSet<>(); //different from uml, Collection<String> instead of String
 
     @Embedded
+    @JsonProperty("address")
     private Address address;
+    @JsonProperty("avatar")
     private String avatar;
+
+    public Account() {
+    }
 
     public Account(Role role, String name, String email, String password, Collection<String> phone, Address address, String avatar) {
         this.role = role;
