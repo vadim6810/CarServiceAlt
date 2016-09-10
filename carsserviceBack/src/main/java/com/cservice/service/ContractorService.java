@@ -1,6 +1,5 @@
 package com.cservice.service;
 
-import com.cservice.Entity.Commons.Address;
 import com.cservice.Entity.Commons.WorkingHours;
 import com.cservice.Entity.Contractor;
 
@@ -26,11 +25,9 @@ public interface ContractorService {
 
     List<Contractor> getContractorByCity(String city);
 
-    Contractor addContractor(String name, String email, String password, Collection<String> phone, Address address, String avatar,
-                             Collection<String> typeService, String fax, Map<Integer, WorkingHours> workingDays, Collection<String> typeVehicle,
-                             Collection<String> rangeWorks, String url);
+    Contractor addContractor(Contractor contractor);
 
-    boolean removeContractor(Contractor contractor);
+    void removeContractor(Contractor contractor);
 
     boolean removeContractorByEmail(String email);
 

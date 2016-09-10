@@ -1,6 +1,8 @@
 package com.cservice.Entity;
 
 import com.cservice.Entity.Commons.Account;
+import com.cservice.Entity.Commons.Address;
+import com.cservice.Entity.Commons.Role;
 import com.cservice.Entity.Commons.WorkingHours;
 
 import javax.persistence.Column;
@@ -23,7 +25,7 @@ public class Contractor extends Account {
     private String fax;
 
     @ElementCollection
-    @Column(name="dayOfWeek", nullable = false)
+    @Column(name = "dayOfWeek", nullable = false)
     private Map<Integer, WorkingHours> workingDays = new HashMap<>();
 
     @ManyToMany
@@ -33,8 +35,16 @@ public class Contractor extends Account {
     private Collection<String> rangeWorks = new HashSet<>();
     private String url;
 
-    public Contractor() {
-        setRole(CONTRACTOR);
+
+
+    public Contractor( String name, String email, String password, Collection<String> phone, Address address, String avatar, Collection<String> typeServise, String fax, Map<Integer, WorkingHours> workingDays, Collection<String> typeVehicle, Collection<String> rangeWorks, String url) {
+        super(Role.CONTRACTOR, name, email, password, phone, address, avatar);
+        this.typeServise = typeServise;
+        this.fax = fax;
+        this.workingDays = workingDays;
+        this.typeVechile = typeVehicle;
+        this.rangeWorks = rangeWorks;
+        this.url = url;
     }
 
     /* typeService */

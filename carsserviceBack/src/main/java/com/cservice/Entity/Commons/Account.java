@@ -7,6 +7,7 @@ import java.util.HashSet;
 
 /**
  * Entity inheritance details http://docs.oracle.com/javaee/6/tutorial/doc/bnbqn.html
+ *
  * @Inheritance(strategy = InheritanceType.JOINED) ==> 3 table (Account, Client, Contractor)
  * advantage (as minimum): unique name constraint for union Client+Contractor
  * Annotation @MappedSuperclass or @Entity required, otherwise the Account fields will nonpersistents.
@@ -16,10 +17,11 @@ import java.util.HashSet;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(uniqueConstraints = {
         @UniqueConstraint(columnNames = {"name"}),
-        }
+}
 )
 public abstract class Account {
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @Id
@@ -37,6 +39,17 @@ public abstract class Account {
     @Embedded
     private Address address;
     private String avatar;
+
+    public Account(Role role, String name, String email, String password, Collection<String> phone, Address address, String avatar) {
+        this.role = role;
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.address = address;
+        this.avatar = avatar;
+    }
 
     public Role getRole() {
         return role;

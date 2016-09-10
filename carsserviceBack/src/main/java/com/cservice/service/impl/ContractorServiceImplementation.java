@@ -1,6 +1,5 @@
 package com.cservice.service.impl;
 
-import com.cservice.Entity.Commons.Address;
 import com.cservice.Entity.Commons.WorkingHours;
 import com.cservice.Entity.Contractor;
 import com.cservice.repository.ContractorRepository;
@@ -23,7 +22,7 @@ public class ContractorServiceImplementation implements ContractorService {
 
     @Override
     public Contractor getContractorByEmail(String email) {
-        return null;
+        return cr.findByEmail(email);
     }
 
     @Override
@@ -53,17 +52,17 @@ public class ContractorServiceImplementation implements ContractorService {
 
     @Override
     public List<Contractor> getContractorByCity(String city) {
-        return null;
+       return cr.findByCity(city);
     }
 
     @Override
-    public Contractor addContractor(String name, String email, String password, Collection<String> phone, Address address, String avatar, Collection<String> typeService, String fax, Map<Integer, WorkingHours> workingDays, Collection<String> typeVehicle, Collection<String> rangeWorks, String url) {
-        return null;
+    public Contractor addContractor(Contractor contractor) {
+        return cr.saveAndFlush(contractor);
     }
 
     @Override
-    public boolean removeContractor(Contractor contractor) {
-        return false;
+    public void removeContractor(Contractor contractor) {
+        cr.delete(contractor);
     }
 
     @Override

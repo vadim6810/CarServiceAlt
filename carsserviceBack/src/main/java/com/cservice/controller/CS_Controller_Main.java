@@ -39,15 +39,9 @@ public class CS_Controller_Main {
 	@RequestMapping(value = "users/login",method = RequestMethod.POST)//us test
 	public void login(@RequestParam String login,@RequestParam String password, HttpServletRequest request, HttpServletResponse response){
 
-        Account acc;
-
         System.out.println(login);
         System.out.println(password);
-		//
-		Cookie cookie=new Cookie("X-API","");
-        //".inetex.co.il"
-//        cookie.setDomain("localhost");
-//        cookie.setMaxAge(60*60*24);
+		Cookie cookie=new Cookie("X-API","334455");
 		response.addCookie(cookie);
 	}
 
