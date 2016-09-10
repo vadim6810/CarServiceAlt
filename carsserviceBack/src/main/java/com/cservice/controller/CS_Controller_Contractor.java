@@ -3,6 +3,7 @@ package com.cservice.controller;
 
 import com.cservice.Entity.Contractor;
 import com.cservice.repository.ContractorRepository;
+import com.cservice.service.impl.ContractorServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,12 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @ComponentScan
-@EnableAutoConfiguration
 @RequestMapping(value = "contractor", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CS_Controller_Contractor {
 
-    @Autowired
-    private ContractorRepository cr;
+    ContractorServiceImplementation crepo;
 
     //returns list of available contractors
     @ResponseStatus(HttpStatus.OK)
@@ -31,7 +30,7 @@ public class CS_Controller_Contractor {
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/{email}", method = RequestMethod.GET)
     public Contractor getAll(@PathVariable String email) {
-        return null;
+        return crepo.getContractorByEmail("test");
     }
 
     //returns list of available contractors

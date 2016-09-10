@@ -20,12 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 @CrossOrigin
 @RestController
 @ComponentScan
-@EnableAutoConfiguration
 @RequestMapping(value = "api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CS_Controller_Main {
-
-	@Autowired
-	private ContractorRepository cr;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CS_Controller_Main.class, args);
