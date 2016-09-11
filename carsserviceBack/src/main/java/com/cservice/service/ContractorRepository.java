@@ -1,4 +1,4 @@
-package com.cservice.repository;
+package com.cservice.service;
 
 import com.cservice.Entity.Contractor;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+
 public interface ContractorRepository extends JpaRepository<Contractor, Long> {
 
 
