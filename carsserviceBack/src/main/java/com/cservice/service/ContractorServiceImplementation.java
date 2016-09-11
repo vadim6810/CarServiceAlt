@@ -3,6 +3,7 @@ package com.cservice.service;
 import com.cservice.Entity.Commons.WorkingHours;
 import com.cservice.Entity.Contractor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -13,11 +14,25 @@ import java.util.Map;
  * Created by user on 10/09/2016.
  */
 
-@Service("contractorService")
+@Service
 public class ContractorServiceImplementation implements ContractorService {
 
     @Autowired
     private ContractorRepository contractorRepository;
+
+
+    public ContractorServiceImplementation(){
+
+    }
+
+
+    public ContractorRepository getContractorRepository() {
+        return contractorRepository;
+    }
+
+    public void setContractorRepository(ContractorRepository contractorRepository) {
+        this.contractorRepository = contractorRepository;
+    }
 
     @Override
     public Contractor addContractor(Contractor c) {

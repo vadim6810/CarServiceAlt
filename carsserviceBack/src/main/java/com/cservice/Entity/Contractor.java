@@ -1,17 +1,9 @@
 package com.cservice.Entity;
 
-import com.cservice.Entity.Commons.Account;
-import com.cservice.Entity.Commons.Address;
-import com.cservice.Entity.Commons.Role;
-import com.cservice.Entity.Commons.WorkingHours;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.cservice.Entity.Commons.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.*;
 
 
@@ -23,22 +15,23 @@ public class Contractor extends Account {
 
     @ManyToMany
     @JsonProperty("typeService")
-    private Collection<String> typeService = new HashSet<>();
+    private Collection<TypeService> typeService;
     @JsonProperty("fax")
     private String fax;
 
     @ElementCollection
     @JsonProperty("workingDays")
-    @Column(name = "dayOfWeek", nullable = false)
-    private Map<Integer, WorkingHours> workingDays = new HashMap<>();
+    @Column(name = "workingHours", nullable = false)
+    @MapKeyColumn(name = "dayOfWeek")
+    private Map<Integer, WorkingHours> workingDays;
 
     @ManyToMany
     @JsonProperty("typeVehicle")
-    private Collection<String> typeVehicle = new HashSet<>();
+    private Collection<TypeVehicle> typeVehicle;
 
     @ManyToMany
     @JsonProperty("rangeWorks")
-    private Collection<String> rangeWorks = new HashSet<>();
+    private Collection<RangeWorks> rangeWorks;
     @JsonProperty("url")
     private String url;
 
@@ -46,7 +39,7 @@ public class Contractor extends Account {
         super(Role.CONTRACTOR);
     }
 
-    public Contractor(String name, String email, String password, Collection<String> phone, Address address, String avatar, Collection<String> typeService, String fax, Map<Integer, WorkingHours> workingDays, Collection<String> typeVehicle, Collection<String> rangeWorks, String url) {
+    public Contractor(String name, String email, String password, Collection<String> phone, Address address, String avatar, Collection<TypeService> typeService, String fax, Map<Integer, WorkingHours> workingDays, Collection<TypeVehicle> typeVehicle, Collection<RangeWorks> rangeWorks, String url) {
         super(Role.CONTRACTOR, name, email, password, phone, address, avatar);
         this.typeService = typeService;
         this.fax = fax;
@@ -57,19 +50,19 @@ public class Contractor extends Account {
     }
 
     /* typeService */
-    public void setTypeService(Collection<String> typeService) {
+    public void setTypeService(Collection<TypeService> typeService) {
         this.typeService.clear();
         this.typeService.addAll(typeService);
     }
 
-    public Collection<String> getTypeService() {
+    public Collection<TypeService> getTypeService() {
         return typeService;
     }
 
-    public void addTypeServise(String... typeServise) {
-        if (typeServise.length > 0)
-            this.typeService.addAll(Arrays.asList(typeServise));
-    }
+//    public void addTypeServise(String... typeServise) {
+//        if (typeServise.length > 0)
+//            this.typeService.addAll(Arrays.asList(typeServise));
+//    }
 
     public boolean removeTypeServise(String... typeServise) {
         return typeServise.length > 0 && this.typeService.removeAll(Arrays.asList(typeServise));
@@ -103,38 +96,38 @@ public class Contractor extends Account {
     }
 
     /* typeVehicle */
-    public void setTypeVehicle(Collection<String> typeVehicle) {
+    public void setTypeVehicle(Collection<TypeVehicle> typeVehicle) {
         this.typeVehicle.clear();
         this.typeVehicle.addAll(typeVehicle);
     }
 
-    public Collection<String> getTypeVehicle() {
+    public Collection<TypeVehicle> getTypeVehicle() {
         return typeVehicle;
     }
 
-    public void addTypeVechile(String... typeVechile) {
-        if (typeVechile.length > 0)
-            this.typeVehicle.addAll(Arrays.asList(typeVechile));
-    }
+//    public void addTypeVechile(String... typeVechile) {
+//        if (typeVechile.length > 0)
+//            this.typeVehicle.addAll(Arrays.asList(typeVechile));
+//    }
 
     public boolean removeTypeVechile(String... typeVechile) {
         return typeVechile.length > 0 && this.typeVehicle.removeAll(Arrays.asList(typeVechile));
     }
 
     /* rangeWorks */
-    public void setRangeWorks(Collection<String> rangeWorks) {
+    public void setRangeWorks(Collection<RangeWorks> rangeWorks) {
         this.rangeWorks.clear();
         this.rangeWorks.addAll(rangeWorks);
     }
 
-    public Collection<String> getRangeWorks() {
+    public Collection<RangeWorks> getRangeWorks() {
         return rangeWorks;
     }
 
-    public void addRangeWorks(String... rangeWorks) {
-        if (rangeWorks.length > 0)
-            this.rangeWorks.addAll(Arrays.asList(rangeWorks));
-    }
+//    public void addRangeWorks(String... rangeWorks) {
+//        if (rangeWorks.length > 0)
+//            this.rangeWorks.addAll(Arrays.asList(rangeWorks));
+//    }
 
     public boolean removeRangeWorks(String... rangeWorks) {
         return rangeWorks.length > 0 && this.rangeWorks.removeAll(Arrays.asList(rangeWorks));

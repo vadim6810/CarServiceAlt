@@ -5,8 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @EnableAutoConfiguration
 @ComponentScan
+@Configuration
+@EnableTransactionManagement
 @RequestMapping(value = "api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CS_Controller_Main {
 
